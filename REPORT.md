@@ -183,7 +183,7 @@ Given the chosen architecture and parameters, our results are :
 
 ![Training results](assets/Results.jpg)
 
-**These results meets the project's expectation as the agent is able to receive an average reward (over 100 episodes) of at least +0.5 in 2588 episodes** 
+**These results meet the project's expectations as the agent is able to receive an average reward (over 100 episodes) of at least +0.50 in 2588 episodes.** 
 
 
 ### Ideas for Future Work
