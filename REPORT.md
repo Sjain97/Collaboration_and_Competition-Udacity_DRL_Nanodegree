@@ -1,6 +1,6 @@
 # Project 3 : Collaboration and Competition
 
-## Project's goal
+## Project's Goal
 
 In this environment, two agents control rackets to bounce a ball over a net. If an agent hits the ball over the net, it receives a reward of +0.1.  If an agent lets a ball hit the ground or hits the ball out of bounds, it receives a reward of -0.01.  **Thus, the goal of each agent is to keep the ball in play.**
 
@@ -52,7 +52,7 @@ Deep Deterministic Policy Gradient (DDPG) is an algorithm which concurrently lea
 
 More details available on the Open AI's [Spinning Up](https://spinningup.openai.com/en/latest/algorithms/ddpg.html) website.
 
-![DDPG algorithm from Spinning Up website](./images/DDPG.svg)
+![DDPG algorithm from Spinning Up website](assets/DDPG.jpg)
 
 This algorithm screenshot is taken from the [DDPG algorithm from the Spinning Up website](https://spinningup.openai.com/en/latest/algorithms/ddpg.html)
 
@@ -62,19 +62,14 @@ For this project I have used a variant of DDPG called **Multi Agent Deep Determi
 
 > We explore deep reinforcement learning methods for multi-agent domains. We begin by analyzing the difficulty of traditional algorithms in the multi-agent case: Q-learning is challenged by an inherent non-stationarity of the environment, while policy gradient suffers from a variance that increases as the number of agents grows. We then present an adaptation of actor-critic methods that considers action policies of other agents and is able to successfully learn policies that require complex multi-agent coordination. Additionally, we introduce a training regimen utilizing an ensemble of policies for each agent that leads to more robust multi-agent policies. We show the strength of our approach compared to existing methods in cooperative as well as competitive scenarios, where agent populations are able to discover various physical and informational coordination strategies.
 
-![MADDPG algorithm](./images/MADDPG-algo.png) (screenshot from the paper)
+![MADDPG algorithm](assets/MADDPG-algo.png) <br> (screenshot from the paper)
 
 
 The main concept behind this algorithm is summarized in this illustration taken from the paper :
 
-![Overview of the multi-agent decentralized actor, centralized critic approach](./images/MADDPG.png) (screenshot from the paper)
+![Overview of the multi-agent decentralized actor, centralized critic approach](assets/MADDPG.png) (screenshot from the paper)
 
-> we accomplish our goal by adopting the framework of centralized training with
-decentralized execution. Thus, we allow the policies to use extra information to ease training, so
-long as this information is not used at test time. It is unnatural to do this with Q-learning, as the Q
-function generally cannot contain different information at training and test time. Thus, we propose
-a simple extension of actor-critic policy gradient methods where the critic is augmented with extra
-information about the policies of other agents.
+> We accomplish our goal by adopting the framework of centralized training with decentralized execution. Thus, we allow the policies to use extra information to ease training, so long as this information is not used at test time. It is unnatural to do this with Q-learning, as the Q-function generally cannot contain different information at training and test time. Thus, we propose a simple extension of actor-critic policy gradient methods where the critic is augmented with extra information about the policies of other agents.
 
 In short, this means that during the training, the Critics networks have access to the states and actions information of both agents, while the Actors networks have only access to the information corresponding to their local agent.
 
@@ -104,8 +99,7 @@ The code consist of :
         ```  
     
 - `ddpg_agent.py` : Implement the **DDPG agent** and a **Replay Buffer memory** used by the DDPG agent.
-    - The Actor's *Local* and *Target* neural networks, and the Critic's *Local* and *Target* neural networks are instanciated by the Agent's constructor
-    - The `learn()` method is specific to DDPG and is not used in this project (I keep it for code later code reuse)
+    - The Actor's *Local* and *Target* neural networks, and the Critic's *Local* and *Target* neural networks are instanciated by the Agent's constructor.
   
 - `memory.py` : Implement the Buffer Replay Memory
     - As it is accessed by both Agents, it is instanciated in the maddpg class instead of the ddpg class.
@@ -114,42 +108,16 @@ The code consist of :
 
 - `hyperparameters.py` : Defines all the hyperparameters in constant variables. (**Important**: Don't forget to restart the Jupyter Notebook Kernel to take into account any change done to these parameters)
 
-- `TennisProject.ipynb` : This Jupyter notebooks allows to instanciate and train both agent. More in details it allows to :
+- `TennisProject.ipynb` : This Jupyter notebook allows to instanciate and train both the agents. Furthermore, it allows to :
   - Prepare the Unity environment and Import the necessary packages 
   - Check the Unity environment
   - Define a helper function to instanciate and train a MADDPG agent
   - Train an agent using MADDPG 
   - Plot the score results
 
-### MADDPG parameters and results
+### MADDPG Parameters and Results
 
-#### Methodology
-
-As a starting point, I mainly used the vanilla DDPG architecture and parameters used in the previous Udacity project/Tutorials (Neural networks with 2 dense layers of size 400 and 300, Learning rate of 1e-4 for the Actors and 1e-3 for the Critics networks, discount factor of 0.99, tau with value 1e-3)
-
-Then I tried to explore a few changes, which didn't work that well. Amongs these failed attemps, there were : 
-- using gradient clippint during the critic optimization
-- scaling the noise and using noise decay
-- playing with the size of the neural networks (use smaller or larger ones)
-- playing with the size of the replay buffer (smaller)
-- trying Leaky Relu activation
-- ...
-
-But there were little modifications which helped the agents to converge a bit faster :
-- Altering the Critics neural network so that the actions and states are concatenated directly at the input of the network (instead of concatenating the actions at the first hidden layer of the network, as in vanilla DDPG) 
-- Use a use normal distribution to sample experiences from the Replay Buffer
-- Adding Batch Normalization after the Activation in the first layers of the neural network helped to converge a bit faster (600 episodes less)
-- A important change was to allow the agents to learn not at all episodes, and also be able to perform the learning process multiple times in a row. However too much updates, make the Agent learning very brittle at some point (critical forgetting)
-
-
-Main "training millestones" :
-- "First working version" : At first sight I thought the Agents were not learning, but they started to learn after ~3000 episodes, and were able to solve the environments in "4287 episodes with an Average Score of 0.50" 
-- Change to "Learn 3 times in a row every 4 episodes" + Boost Critic Learning rate to 5e-3 and use a dicount factor of 0.995 : "Environment solved in 2989 episodes with an Average Score of 0.51" 
-- Add Batch normalization : "Environment solved in 2487 episodes with an Average Score of 0.51"
-
-
-
-#### MADDPG parameters
+#### MADDPG Parameters
 
 The final version of my MADDPG agents uses the following parameters values (These parameters are passed in the `hyperparameters.py`  file.
 
@@ -213,42 +181,14 @@ Both Neural Networks use the Adam optimizer with a learning rate of 1e-4 (actors
 
 Given the chosen architecture and parameters, our results are :
 
-![Training results](images/Results.png)
+![Training results](images/Results.jpg)
 
-**These results meets the project's expectation as the agent is able to receive an average reward (over 100 episodes) of at least +0.5 in 2487 episodes** 
-
-
-### Ideas for future work
-
-As presented on [OpenAI](https://openai.com/)'s [Spinning Up](https://spinningup.openai.com/en/latest/index.html) website, the **Twin Delayed DDPG (TD3)** alorithm might be a good improvement for our Multi Agents environments.
-
-See :[Twin Delayed DDPG (TD3)](https://spinningup.openai.com/en/latest/algorithms/td3.html)
+**These results meets the project's expectation as the agent is able to receive an average reward (over 100 episodes) of at least +0.5 in 2588 episodes** 
 
 
-> While DDPG can achieve great performance sometimes, it is frequently brittle with respect to hyperparameters and other kinds of tuning. A common failure mode for DDPG is that the learned Q-function begins to dramatically overestimate Q-values, which then leads to the policy breaking, because it exploits the errors in the Q-function. Twin Delayed DDPG (TD3) is an algorithm which addresses this issue by introducing three critical tricks:
+### Ideas for Future Work
 
-> - Trick One: Clipped Double-Q Learning. TD3 learns two Q-functions instead of one (hence “twin”), and uses the smaller of the two Q-values to form the targets in the Bellman error loss functions.
-
-> - Trick Two: “Delayed” Policy Updates. TD3 updates the policy (and target networks) less frequently than the Q-function. The paper recommends one policy update for every two Q-function updates.
-
-> - Trick Three: Target Policy Smoothing. TD3 adds noise to the target action, to make it harder for the policy to exploit Q-function errors by smoothing out Q along changes in action.
-
-> Together, these three tricks result in substantially improved performance over baseline DDPG
-
-![DDPG algorithm from Spinning Up website](./images/TD3.svg)
-
-This algorithm screenshot is taken from the [Twin Delayed DDPG (TD3) from the Spinning Up website](https://spinningup.openai.com/en/latest/algorithms/td3.html)
-
-More details in the paper : [Addressing Function Approximation Error in Actor-Critic Methods](https://arxiv.org/abs/1802.09477)
-
->  In value-based reinforcement learning methods such as deep Q-learning, function approximation errors are known to lead to overestimated value estimates and suboptimal policies. We show that this problem persists in an actor-critic setting and propose novel mechanisms to minimize its effects on both the actor and the critic. Our algorithm builds on Double Q-learning, by taking the minimum value between a pair of critics to limit overestimation. We draw the connection between target networks and overestimation bias, and suggest delaying policy updates to reduce per-update error and further improve performance. We evaluate our method on the suite of OpenAI gym tasks, outperforming the state of the art in every environment tested.
-
-
-Second idea, to further improve our Multi-Agents project would be to implement [Prioritized experience replay](https://arxiv.org/abs/1511.05952)
-
-> Experience replay lets online reinforcement learning agents remember and reuse experiences from the past. In prior work, experience transitions were uniformly sampled from a replay memory. However, this approach simply replays transitions at the same frequency that they were originally experienced, regardless of their significance. In this paper we develop a framework for prioritizing experience, so as to replay important transitions more frequently, and therefore learn more efficiently. We use prioritized experience replay in Deep Q-Networks (DQN), a reinforcement learning algorithm that achieved human-level performance across many Atari games. DQN with prioritized experience replay achieves a new state-of-the-art, outperforming DQN with uniform replay on 41 out of 49 games.
-
-
-### Misc : Configuration used 
-
-This agent has been trained on my "Deep Learning Dev Box", which is basically a Linux GPU Server, running Docker containers (using Nvidia Docker 2), serving Jupyter Lab notebooks which are accessed remotely via a web interface (or a ssh connection) : unfortunately this setup does not seem suitable to run Unity ML agent, with the GPU and providing a display for for the agent (See [Unity documentation](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Using-Docker.md) for more details). Thus the headless / no visualization version of the Unity environment was used.
+The following techniques that can potentially further improve the performance of the network:
+- [Prioritized Experience Replay](https://arxiv.org/abs/1511.05952): This technique prioritizes the experiences and chooses the best experience for further training when sampling from the buffer. This is known to reduce the training time and make the training more efficient.
+- [Asynchornous Actor Critic Agent](https://medium.com/emergent-future/simple-reinforcement-learning-with-tensorflow-part-8-asynchronous-actor-critic-agents-a3c-c88f72a5e9f2): This technique trains multiple worker agents that interact with a glocal network asynchronously to optimize the policy and value function. This way, each of these agents interacts with it’s own copy of the environment at the same time as the other agents are interacting with their environments.
+- [Proximal Policy Optimization](https://arxiv.org/abs/1707.06347): This technique modifies the parameters of the network in such a way that the new set of parameters is looked for in the immediate neighbourhood of the parameters in the previous iteration of the training. This is shown also to be an efficient way of training the network so the search space is more optimal. 
