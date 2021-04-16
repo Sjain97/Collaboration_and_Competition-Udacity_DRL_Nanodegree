@@ -181,7 +181,7 @@ Both Neural Networks use the Adam optimizer with a learning rate of 1e-4 (actors
 
 Given the chosen architecture and parameters, our results are :
 
-![Training results](images/Results.jpg)
+![Training results](assets/Results.jpg)
 
 **These results meets the project's expectation as the agent is able to receive an average reward (over 100 episodes) of at least +0.5 in 2588 episodes** 
 
