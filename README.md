@@ -2,7 +2,7 @@
 
 This project repository contains my work for the Udacity's [Deep Reinforcement Learning Nanodegree](https://www.udacity.com/course/deep-reinforcement-learning-nanodegree--nd893) Project 3: Collaboration and Competition.
 
-## Project's goal
+## Project's Goal
 
 ![Tennis Agents](assets/tennis.png)
 
