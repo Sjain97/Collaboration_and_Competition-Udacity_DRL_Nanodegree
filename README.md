@@ -46,10 +46,7 @@ In this Udacity project, the environment is considered solved, when the average 
 
 - Finally, unzip the environment archive in the 'project's environment' directory and eventually adjust the path to the UnityEnvironment in the code.
 
-Note: A conda environment file is provided with this project (so you can check/install the versions of the libraries I used)
-
-
-    
+   
 ### Train a agent
     
 Execute the provided notebook `Tennis.ipynb` within this Nanodegree Udacity Online Workspace for "Project #3  Collaboration and Competition" (or build your own local environment and make necessary adjustements for the path to the UnityEnvironment in the code)
