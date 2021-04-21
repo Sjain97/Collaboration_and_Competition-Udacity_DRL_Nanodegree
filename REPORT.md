@@ -94,7 +94,7 @@ The Ornstein-Uhlenbeck process itself has three hyperparameters that determine t
 Given the chosen methods and parameters, our results are -
 
 Score Log: <br>
-![Score Log](assets/Scores.jpg)
+![Score Log](assets/scores.jpg)
 <br>
 
 Plot of MADDPG and Average Moving Score, by Episode Number: <br>
