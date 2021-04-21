@@ -30,7 +30,7 @@ The information flow in a MADDPG algorithm from the paper is depicted in the bel
 
 The main concept behind this algorithm is summarized in this illustration taken from the paper :
 
-![Overview of the multi-agent decentralized actor, centralized critic approach](assets/MADDPG.png) (screenshot from the paper)
+![Overview of the multi-agent decentralized actor, centralized critic approach](assets/MADDPG.png)
 
 #### Actor-Critic Method
 Actor-critic methods leverage the strengths of both policy-based and value-based methods.
@@ -73,8 +73,11 @@ The Ornstein-Uhlenbeck process itself has three hyperparameters that determine t
 
 Given the chosen methods and parameters, our results are :
 
+Score Log: <br>
 ![Score Log](assets/Scores.jpg)
+<br>
 
+Plot of MADDPG and Average Moving Score by episodes: <br>
 ![Training results](assets/Result.jpg)
 
 **These results meet the project's expectations as the agent is able to receive an average reward (over 100 episodes) of at least +0.50 in <br> 523 episodes.** 
