@@ -83,7 +83,9 @@ The Ornstein-Uhlenbeck process itself has three hyperparameters that determine t
 
 #### Results
 
-Given the chosen architecture and parameters, our results are :
+Given the chosen methods and parameters, our results are :
+
+![Score Log](assets/Scores.jpg)
 
 ![Training results](assets/Results.jpg)
 
