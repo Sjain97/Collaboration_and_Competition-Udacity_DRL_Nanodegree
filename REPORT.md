@@ -71,7 +71,7 @@ The Ornstein-Uhlenbeck process itself has three hyperparameters that determine t
 
 #### Results
 
-Given the chosen methods and parameters, our results are :
+Given the chosen methods and parameters, our results are -
 
 Score Log: <br>
 ![Score Log](assets/Scores.jpg)
