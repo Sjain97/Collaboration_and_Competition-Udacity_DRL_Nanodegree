@@ -75,7 +75,7 @@ Given the chosen methods and parameters, our results are :
 
 ![Score Log](assets/Scores.jpg)
 
-![Training results](assets/Results.jpg)
+![Training results](assets/Result.jpg)
 
 **These results meet the project's expectations as the agent is able to receive an average reward (over 100 episodes) of at least +0.50 in <br> 523 episodes.** 
 
