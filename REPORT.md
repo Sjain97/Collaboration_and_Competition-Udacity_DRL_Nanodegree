@@ -37,6 +37,26 @@ Actor-critic methods leverage the strengths of both policy-based and value-based
 
 In short, during the training, the Critics networks have access to the states and actions information of both agents, while the Actors networks have only access to the information corresponding to their local agent.
 
+## Architecture of the models
+
+The **Actor Neural Network Architecture:** 
+
+- Input nodes: 24 (corresponding to 8 * 3 states)
+- Fully connected layer (256 units, ReLU activation)
+- Fully connected layer (128 units, ReLU activation)
+- Output notes: 2 notes per action (Tanh activation)
+
+The **Critic Neural Network Architecture:**
+
+- Input nodes: 52 (corresponding to 2 agents*(24 states + 2 actions))
+- Fully connected layer (256 units, ReLU activation)
+- Fully connected layer (128 units, ReLU activation)
+- Output notes: 1 (No activation)
+
+**ReplayBuffer**
+
+- A fixed size buffer, of size 1e6.
+
 ### Code implementation
 
 The code used here is derived from the "DDPG pidedal" tutorial from the [Deep Reinforcement Learning Nanodegree](https://www.udacity.com/course/deep-reinforcement-learning-nanodegree--nd893), and modified to implement the **Multi-Agent Actor Critic**  as discussed in the Multi-Agent Udacity tutorial lesson.
