@@ -1,6 +1,8 @@
 # Deep Reinforcement Learning : Collaboration and Competition
 
-This project repository contains my work for the Udacity's [Deep Reinforcement Learning Nanodegree](https://www.udacity.com/course/deep-reinforcement-learning-nanodegree--nd893) Project 3: Collaboration and Competition.
+This project repository contains the work for the Udacity's [Deep Reinforcement Learning Nanodegree](https://www.udacity.com/course/deep-reinforcement-learning-nanodegree--nd893) Project 3: Collaboration and Competition.
+
+![Tennis Agents](assets/tennis.png)
 
 ## Project's Goal
 
@@ -13,36 +15,11 @@ The task is episodic, and in order to solve the environment, **the agents must g
 
 The environment is considered solved, when the average (over 100 episodes) of those **scores is at least +0.5.**
 
-
-### About Deep Reinforcement Learning
-
-> [Reinforcement learning](https://skymind.ai/wiki/deep-reinforcement-learning) refers to goal-oriented algorithms, which learn how to attain a complex objective (goal) or maximize along a particular dimension over many steps; for example, maximize the points won in a game over many moves. They can start from a blank slate, and under the right conditions they achieve superhuman performance. Like a child incentivized by spankings and candy, these algorithms are penalized when they make the wrong decisions and rewarded when they make the right ones – this is reinforcement.
-
-In this project I have used a variant of DDPG called **Multi Agent Deep Deterministic Policy Gradient (MADDPG)** which is  described in the paper [Multi-Agent Actor-Critic for Mixed Cooperative-Competitive Environments](https://arxiv.org/abs/1706.02275)
-
 ### Environment details
 
-The environment is based on [Unity ML-agents](https://github.com/Unity-Technologies/ml-agents). The project environment provided by Udacity is similar to the [Tennis](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Examples.md#tennis) environment on the Unity ML-Agents GitHub page.
-
-> The Unity Machine Learning Agents Toolkit (ML-Agents) is an open-source Unity plugin that enables games and simulations to serve as environments for training intelligent agents. Agents can be trained using reinforcement learning, imitation learning, neuroevolution, or other machine learning methods through a simple-to-use Python API. 
+The environment is based on [Unity ML-agents](https://github.com/Unity-Technologies/ml-agents). 
 
 The observation space consists of 8 variables corresponding to the position and velocity of the ball and racket. Each agent receives its own, local observation.  Two continuous actions are available, corresponding to movement toward (or away from) the net, and jumping. 
-
-- Set-up: Two-player game where agents control rackets to bounce ball over a net.
-- Goal: The agents must bounce ball between one another while not dropping or sending ball out of bounds.
-- Agents: The environment contains two agent linked to a single Brain named TennisBrain. After training you can attach another Brain named MyBrain to one of the agent to play against your trained model.
-- Agent Reward Function (independent):
-  - +0.1 To agent when hitting ball over net.
-  - -0.1 To agent who let ball hit their ground, or hit ball out of bounds.
-- Brains: One Brain with the following observation/action space.
-- Vector Observation space: 8 variables corresponding to position and velocity of ball and racket.
-  - In the Udacity provided environment, 3 observations are stacked (8 *3 = 24 variables) 
-- Vector Action space: (Continuous) Size of 2, corresponding to movement toward net or away from net, and jumping.
-- Visual Observations: None.
-- Reset Parameters: One, corresponding to size of ball.
-- Benchmark Mean Reward: 2.5
-- Optional Imitation Learning scene: TennisIL.
-
 
 ### Solving the Environment
 
