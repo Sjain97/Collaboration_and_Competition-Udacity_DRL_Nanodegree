@@ -77,7 +77,7 @@ Score Log: <br>
 ![Score Log](assets/Scores.jpg)
 <br>
 
-Plot of MADDPG and Average Moving Score by episodes: <br>
+Plot of MADDPG and Average Moving Score, by Episode Number: <br>
 ![Training results](assets/Result.jpg)
 
 **These results meet the project's expectations as the agent is able to receive an average reward (over 100 episodes) of at least +0.50 in <br> 523 episodes.** 
