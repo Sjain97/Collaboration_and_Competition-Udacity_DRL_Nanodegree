@@ -37,18 +37,6 @@ Actor-critic methods leverage the strengths of both policy-based and value-based
 
 In short, during the training, the Critics networks have access to the states and actions information of both agents, while the Actors networks have only access to the information corresponding to their local agent.
 
-```python
-# Actor Network (w/ Target Network)
-self.actor_local = Actor(state_size, action_size, random_seed).to(device)
-self.actor_target = Actor(state_size, action_size, random_seed).to(device)
-self.actor_optimizer = optim.Adam(self.actor_local.parameters(), lr=LR_ACTOR)
-
-# Critic Network (w/ Target Network)
-self.critic_local = Critic(state_size, action_size, random_seed).to(device)
-self.critic_target = Critic(state_size, action_size, random_seed).to(device)
-self.critic_optimizer = optim.Adam(self.critic_local.parameters(), lr=LR_CRITIC, weight_decay=WEIGHT_DECAY)
-```
-
 ### Code implementation
 
 The code used here is derived from the "DDPG pidedal" tutorial from the [Deep Reinforcement Learning Nanodegree](https://www.udacity.com/course/deep-reinforcement-learning-nanodegree--nd893), and modified to implement the **Multi-Agent Actor Critic**  as discussed in the Multi-Agent Udacity tutorial lesson.
